@@ -1,11 +1,16 @@
-function [ ] = getFigRate( in, fileName )
+function [ ] = getFigRate( inTh, inSim, fileName )
     % Plotter of SINR outage as a function of the th.
+    z = (1-0.5*0.02);
     X_len = length(0:20:1000); % Mbps
-    load( strcat(in{1}) );
-    Y_sim(1:X_len,1) = P_rate_coverage_sim(20, :);
+    load( strcat(inSim{1}) );
+    Y_sim(1:X_len,1) = sum(squeeze(rate_coverage_count(20, :, :)),2) / iterations;
+    e(1:X_len,1) = z * sqrt(Y_sim(1:X_len,1) .* (1-Y_sim(1:X_len,1)) ./ iterations);
+    load( strcat(inTh{1}) );
     Y_th(1:X_len,1) = P_rate_coverage_lb(20, :);
-    load( strcat(in{2}) );
-    Y_sim(1:X_len,2) = P_rate_coverage_sim(20, :);
+    load( strcat(inSim{2}) );
+    Y_sim(1:X_len,2) = sum(squeeze(rate_coverage_count(20, :, :)),2) / iterations;
+    e(1:X_len,2) = z * sqrt(Y_sim(1:X_len,2) .* (1-Y_sim(1:X_len,2)) ./ iterations);
+    load( strcat(inTh{2}) );
     Y_th(1:X_len,2) = P_rate_coverage_lb(20, :);
     Y = [];
     for idx = 1:2
@@ -58,6 +63,9 @@ function [ ] = getFigRate( in, fileName )
     PL = plot(X,Y,...
         'MarkerSize',15,...
         'LineWidth',1);
+    rangeE = 0:20:1000;
+    errorbar(rangeE(1:2:end),Y_sim(1:2:end,1),e(1:2:end,1),'Color',[0 0 0],'LineStyle','none','LineWidth',1.5)
+    errorbar(rangeE(1:2:end),Y_sim(1:2:end,2),e(1:2:end,2),'Color',[0 0 0],'LineStyle','none','LineWidth',1.5)
 
     xlabel('$\kappa$ (Mbps)','FontSize',27,'FontName','Times','Interpreter','latex');
     ylabel('$\mathrm{R}_\mathrm{C}(\kappa)$','FontSize',27,'FontName','Times','Interpreter','latex');

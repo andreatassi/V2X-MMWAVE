@@ -1,12 +1,14 @@
-function [ ] = getFigLOS( in, filename )
+function [ ] = getFigLOS( in, filename, yMin )
     % Plotter of SINR outage as a function of the th.
     lamb_range = (2:2:200);
     lamb_range_len = length(lamb_range);
     iterations = 2e5;
     len = 2;
+    z = (1-0.5*0.02);
     for idx = 1:len
         load( strcat(in{idx}) );
         Y_sim(1:lamb_range_len,idx) = (sum(served_los_count_sim,2) / iterations)';
+        e(1:lamb_range_len,idx) = z * sqrt(Y_sim(1:lamb_range_len,idx) .* (1-Y_sim(1:lamb_range_len,idx)) ./ iterations);
         Y_th(1:lamb_range_len,idx) = served_los_count_th;
     end
     Y = [];
@@ -26,15 +28,19 @@ function [ ] = getFigLOS( in, filename )
     AX = axes('Parent',Figure, ... 
         'YMinorTick','on',...
         'XTick',[2, 20:20:200],... 
-        'YTick', 0.8:0.05:1,...
+        'YTick', 0.8:0.02:1,...
         'YMinorGrid','on',...
         'YGrid','on',...
         'XGrid','on',...
         'LineWidth',0.5,...
         'FontSize',24,...
         'FontName','Times');
-    xlim(AX,[2 200]);
-    ylim(AX,[0.85 1]);
+        xlim(AX,[2 200]);
+    try
+        ylim(AX,[yMin 1]);
+    catch
+        ylim(AX,[0.84 1]);
+    end
     box(AX,'on');
     hold(AX,'all');
     
@@ -60,6 +66,9 @@ function [ ] = getFigLOS( in, filename )
     PL = plot(X,Y,...
         'MarkerSize',15,...
         'LineWidth',1);
+    rangeE = 1:5:lamb_range_len;
+    errorbar(lamb_range(rangeE),Y_sim(rangeE,1),e(rangeE,1),'Color',[0 0 0],'LineStyle','none','LineWidth',1.5)
+    errorbar(lamb_range(rangeE),Y_sim(rangeE,2),e(rangeE,2),'Color',[0 0 0],'LineStyle','none','LineWidth',1.5)
 
     xlabel('$\lambda_{\mathrm{BS}} \cdot 10^4$','FontSize',27,'FontName','Times','Interpreter','latex');
     ylabel('$\mathrm{P}_{\mathrm{L}}$','FontSize',27,'FontName','Times','Interpreter','latex');
@@ -93,7 +102,7 @@ function [ ] = getFigLOS( in, filename )
     T = get(gca,'position');
     set(gca,'position',[0.0885416666666667 0.110416666666667 0.892708333333333 0.86875]);
     
-    set(LG,'position',[0.113759509128733 0.118749999999999 0.2351988242046 0.246688520158346]);
+    set(LG,'position',[0.0929261757953997 0.118749999999999 0.2351988242046 0.246688520158346]);
 
     xlabh = get(gca,'XLabel');
     set(xlabh,'Position',get(xlabh,'Position') - [0 -0.005 0]);

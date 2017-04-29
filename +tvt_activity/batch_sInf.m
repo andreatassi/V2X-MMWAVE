@@ -1,6 +1,7 @@
 %% One Obstacle Lane per-Driving Direction (SINR outage)
 clearvars;
-userYoff = 3.7/2;
+userYoff = -3.7/2;
+alpha_nlos = 4;
 simSection = true;
 getTh = true;
 recoverRate = false;
@@ -18,7 +19,8 @@ baseName = '+tvt_activity/data/s_Inf';
 save(strcat(baseName,'/data_Validation_30_180_1_A.mat'));
 
 clearvars;
-userYoff = 3.7/2;
+userYoff = -3.7/2;
+alpha_nlos = 4;
 no_bs = zeros(1,length(2:2:200));
 no_bs([20, 50]) = [40, 100];
 simSection = true;
@@ -38,7 +40,8 @@ baseName = '+tvt_activity/data/s_Inf';
 save(strcat(baseName,'/data_Validation_30_180_1_B.mat'));
 
 clearvars;
-userYoff = 3.7/2;
+userYoff = -3.7/2;
+alpha_nlos = 4;
 no_bs = zeros(1,length(2:2:200));
 no_bs([20, 50]) = [40, 100];
 simSection = true;
@@ -58,7 +61,8 @@ baseName = '+tvt_activity/data/s_Inf';
 save(strcat(baseName,'/data_Validation_90_180_1_A.mat'));
 
 clearvars;
-userYoff = 3.7/2;
+userYoff = -3.7/2;
+alpha_nlos = 4;
 no_bs = zeros(1,length(2:2:200));
 no_bs([20, 50]) = [40, 100];
 simSection = true;
@@ -80,7 +84,8 @@ save(strcat(baseName,'/data_Validation_90_180_1_B.mat'));
 
 %% Two Obstacle Lanes per-Driving Direction (SINR outage)
 clearvars;
-userYoff = 3.7/2;
+userYoff = -3.7/2;
+alpha_nlos = 4;
 simSection = true;
 getTh = true;
 recoverRate = false;
@@ -98,7 +103,8 @@ baseName = '+tvt_activity/data/s_Inf';
 save(strcat(baseName,'/data_Validation_30_180_2_A.mat'));
 
 clearvars;
-userYoff = 3.7/2;
+userYoff = -3.7/2;
+alpha_nlos = 4;
 no_bs = zeros(1,length(2:2:200));
 no_bs([20, 50]) = [40, 100];
 simSection = true;
@@ -118,7 +124,8 @@ baseName = '+tvt_activity/data/s_Inf';
 save(strcat(baseName,'/data_Validation_30_180_2_B.mat'));
 
 clearvars;
-userYoff = 3.7/2;
+userYoff = -3.7/2;
+alpha_nlos = 4;
 no_bs = zeros(1,length(2:2:200));
 no_bs([20, 50]) = [40, 100];
 simSection = true;
@@ -138,7 +145,8 @@ baseName = '+tvt_activity/data/s_Inf';
 save(strcat(baseName,'/data_Validation_90_180_2_A.mat'));
 
 clearvars;
-userYoff = 3.7/2;
+userYoff = -3.7/2;
+alpha_nlos = 4;
 no_bs = zeros(1,length(2:2:200));
 no_bs([20, 50]) = [40, 100];
 simSection = true;
@@ -160,7 +168,8 @@ save(strcat(baseName,'/data_Validation_90_180_2_B.mat'));
 
 %% One Obstacle Lane per-Driving Direction (Rate Coverage)
 clearvars;
-userYoff = 3.7/2;
+userYoff = -3.7/2;
+alpha_nlos = 4;
 no_bs = zeros(1,length(2:2:200));
 no_bs(20) = 40;
 simSection = false;
@@ -181,7 +190,8 @@ baseName = '+tvt_activity/data/s_Inf';
 save(strcat(baseName,'/rate_Validation_30_180_1_A.mat'), 'P_rate_coverage_lb', 'P_rate_coverage_sim');
 
 clearvars;
-userYoff = 3.7/2;
+userYoff = -3.7/2;
+alpha_nlos = 4;
 no_bs = zeros(1,length(2:2:200));
 no_bs(20) = 40;
 simSection = false;
@@ -204,7 +214,8 @@ save(strcat(baseName,'/rate_Validation_30_180_1_B.mat'), 'P_rate_coverage_lb', '
 
 %% Two Obstacle Lanes per-Driving Direction (Rate Coverage)
 clearvars;
-userYoff = 3.7/2;
+userYoff = -3.7/2;
+alpha_nlos = 4;
 no_bs = zeros(1,length(2:2:200));
 no_bs(20) = 40;
 simSection = false;
@@ -225,7 +236,8 @@ baseName = '+tvt_activity/data/s_Inf';
 save(strcat(baseName,'/rate_Validation_30_180_2_A.mat'), 'P_rate_coverage_lb', 'P_rate_coverage_sim');
 
 clearvars;
-userYoff = 3.7/2;
+userYoff = -3.7/2;
+alpha_nlos = 4;
 no_bs = zeros(1,length(2:2:200));
 no_bs(20) = 40;
 simSection = false;
@@ -248,7 +260,9 @@ save(strcat(baseName,'/rate_Validation_30_180_2_B.mat'), 'P_rate_coverage_lb', '
 
 %% One Obstacle Lane per-Driving Direction (Assoc. Prob)
 clearvars;
-userYoff = 3.7/2;
+userYoff = -3.7/2;
+alpha_nlos = 4;
+alpha_nlos = 4;
 simSection = true;
 getTh = true;
 recoverRate = false;
@@ -268,7 +282,8 @@ save(strcat(baseName,'/assoc_Validation_30_180_1_A.mat'), 'served_los_count_sim'
 
 %% Two Obstacle Lane per-Driving Direction (Assoc. Prob)
 clearvars;
-userYoff = 3.7/2;
+userYoff = -3.7/2;
+alpha_nlos = 4;
 simSection = true;
 getTh = true;
 recoverRate = false;

@@ -4,9 +4,11 @@ function [ ] = getFigLOS( in, filename )
     lamb_range_len = length(lamb_range);
     iterations = 2e5;
     len = 2;
+    z = (1-0.5*0.02);
     for idx = 1:len
         load( strcat(in{idx}) );
         Y_sim(1:lamb_range_len,idx) = (sum(served_los_count_sim,2) / iterations)';
+        e(1:lamb_range_len,idx) = z * sqrt(Y_sim(1:lamb_range_len,idx) .* (1-Y_sim(1:lamb_range_len,idx)) ./ iterations);
         Y_th(1:lamb_range_len,idx) = served_los_count_th;
     end
     Y = [];
@@ -60,6 +62,9 @@ function [ ] = getFigLOS( in, filename )
     PL = plot(X,Y,...
         'MarkerSize',15,...
         'LineWidth',1);
+    rangeE = 1:1:lamb_range_len;
+    errorbar(lamb_range(rangeE),Y_sim(rangeE,1),e(rangeE,1),'Color',[0 0 0],'LineStyle','none','LineWidth',1.5)
+    errorbar(lamb_range(rangeE),Y_sim(rangeE,2),e(rangeE,2),'Color',[0 0 0],'LineStyle','none','LineWidth',1.5)
 
     %xlabel('$\lambda_{\mathrm{BS}} \cdot 10^4$','FontSize',27,'FontName','Times','Interpreter','latex');
     %ylabel('$\mathrm{P}_{\mathrm{L}}$','FontSize',27,'FontName','Times','Interpreter','latex');

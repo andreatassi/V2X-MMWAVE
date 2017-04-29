@@ -1,13 +1,20 @@
 function [ ] = kraussGen( noObsLanes, obsDensity, roadLen, vehicleLen, ...
                           maxSpeed, refSpeed, refDens, refLen, maxAcceleration, maxDeceleration, ...
-                          driverReacationTime, simDuration, baseName )
+                          driverReacationTime, simDuration, baseName, VrT )
+    try 
+        VrT;
+        nF = '/kraussTrace_pL_';
+    catch
+        VrT = 1;
+        nF = '/kraussTrace_';
+    end
     for l = 1:noObsLanes
         pos = [];
         speed = [];
         speedFollowing = [];
         speedAhead = [];
         distAhead = [];
-        filename = strcat(baseName,'/kraussTrace_', num2str(roadLen), '_', num2str(noObsLanes), '_', num2str(l),'.mat');
+        filename = strcat(baseName,nF, num2str(roadLen), '_', num2str(noObsLanes), '_', num2str(l),'.mat');
         save(filename, 'pos', 'speed', '-v7.3');
         m{l} = matfile(filename,'Writable',true);
     end
@@ -39,7 +46,7 @@ function [ ] = kraussGen( noObsLanes, obsDensity, roadLen, vehicleLen, ...
             ( speedAhead_(1:no_obs) + speedFollowing_(1:no_obs) + 2 * driverReacationTime * maxDeceleration );
         tmp_speed(tmp_speed < 0) = 0;
         speed_next(1:no_obs) = min( [mS_ * ones(no_obs,1), squeeze(tmp_speed)', squeeze(speedFollowing_(1:no_obs))' + maxAcceleration * driverReacationTime], [], 2 );
-        pos_next(1:no_obs) = squeeze(pos_(1:no_obs) - speed_next(1:no_obs));
+        pos_next(1:no_obs) = squeeze(pos_(1:no_obs) - speed_next(1:no_obs)) * VrT;
         idx = squeeze(pos_next(1:no_obs)) < 0;
         pos_next(idx) = mod(pos_next(idx),2*roadLen);
         m{1}.ue_pos(t+1,:) = pos_next(1:no_obs);
@@ -98,11 +105,11 @@ function [ ] = kraussGen( noObsLanes, obsDensity, roadLen, vehicleLen, ...
             end
             speed_next(1:no_obs) = min( [mS_ * ones(no_obs,1), squeeze(tmp_speed)', squeeze(speedFollowing_(1:no_obs))' + maxAcceleration * driverReacationTime], [], 2 );
             if l <= noObsLanes/2
-                pos_next(1:no_obs) = squeeze(pos_(1:no_obs) + speed_next(1:no_obs));
+                pos_next(1:no_obs) = squeeze(pos_(1:no_obs) + speed_next(1:no_obs) * VrT);
                 idx = squeeze(pos_next(1:no_obs)) > 2*roadLen;
                 pos_next(idx) = mod(pos_next(idx),2*roadLen);
             else
-                pos_next(1:no_obs) = squeeze(pos_(1:no_obs) - speed_next(1:no_obs));
+                pos_next(1:no_obs) = squeeze(pos_(1:no_obs) - speed_next(1:no_obs) * VrT);
                 idx = squeeze(pos_next(1:no_obs)) < 0;
                 pos_next(idx) = mod(pos_next(idx),2*roadLen);
             end

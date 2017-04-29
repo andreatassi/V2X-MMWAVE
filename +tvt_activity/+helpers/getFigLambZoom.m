@@ -1,4 +1,4 @@
-function [ ] = getFigLamb( in, sinrIdx, fileName, upSample )
+function [ ] = getFigLambZoom( in, sinrIdx, fileName, upSample )
     % Plotter of SINR outage as a function of the th.
     len = size(in, 2);
     load( strcat(in{1}) );
@@ -6,7 +6,7 @@ function [ ] = getFigLamb( in, sinrIdx, fileName, upSample )
     if upSample
         X_len_sim = 1:100;
     else
-        X_len_sim = 1:5:100;
+        X_len_sim = 25:45;
     end
     z = (1-0.5*0.02);
     for idx = 1:len
@@ -24,22 +24,22 @@ function [ ] = getFigLamb( in, sinrIdx, fileName, upSample )
     %Y_sim(1,2) = Y_sim(1,1);
     %Y_sim(1,4) = Y_sim(1,3);
   
-    Figure = figure('position',[100 0 16*60 8*60],...
+    Figure = figure('position',[100 0 7.5*60 5*60],...
         'paperpositionmode','auto',...
         'InvertHardcopy','off',...
         'Color',[1 1 1]);
     AX = axes('Parent',Figure, ... 
         'YMinorTick','on',...
-        'XTick',[10:20:140, 150],... 
-        'YTick', [0:0.04:0.2],...
+        'XTick',[50:10:90],... 
+        'YTick', [0:0.01:0.06],...
         'YMinorGrid','on',...
         'YGrid','on',...
         'XGrid','on',...
         'LineWidth',0.5,...
         'FontSize',24,...
         'FontName','Times');
-    xlim(AX,[10 150]);
-    ylim(AX,[0 0.2]);
+    xlim(AX,[50 90]);
+    ylim(AX,[0 0.06]);
     box(AX,'on');
     hold(AX,'all');
 
@@ -89,10 +89,10 @@ function [ ] = getFigLamb( in, sinrIdx, fileName, upSample )
     set(hh(1),'Color',CL(4,:), 'MarkerSize',10,'Marker','none','LineStyle', '-','LineWidth',1.5);    
     %---
 
-    xlabel('$\lambda_\mathrm{BS} \cdot 10^4$','FontSize',27,'FontName','Times','Interpreter','latex');
-    ylabel('$\mathrm{P}_\mathrm{T}(\theta)$','FontSize',27,'FontName','Times','Interpreter','latex');
+    %xlabel('$\lambda_\mathrm{BS} \cdot 10^4$','FontSize',27,'FontName','Times','Interpreter','latex');
+    %ylabel('$\mathrm{P}_\mathrm{T}(\theta)$','FontSize',27,'FontName','Times','Interpreter','latex');
     
-    tvt_activity.helpers.plotTickLatex2D();
+    tvt_activity.helpers.plotTickLatex2D('xposfix', 0.05);
 
     LG = legend(AX,'$N_o = 1$, $\theta = 5$dB, Simulation', ...
                    '$N_o = 1$, $\theta = 5$dB, Theory', ...
@@ -109,15 +109,16 @@ function [ ] = getFigLamb( in, sinrIdx, fileName, upSample )
     tvt_activity.utils.plotsparsemarkers(hh,LG,{'x'},25, false, [10],true);
     
     T = get(gca,'position');
-    set(gca,'position',[0.090625 0.104166666666667 0.890625 0.875]);
+    set(gca,'position',[0.106666666666667 0.0933333333333333 0.866666666666667 0.873333333333333]);
     
     set(LG,'position',[0.646248940329951 0.559281760079172 0.332719961802165 0.415625]);
+    legend off;
 
-    xlabh = get(gca,'XLabel');
-    set(xlabh,'Position',get(xlabh,'Position') - [0 -0.007 0]);
-
-    ylabh = get(gca,'YLabel');
-    set(ylabh,'Position',get(ylabh,'Position') - [-0.9 0 0]);
+%     xlabh = get(gca,'XLabel');
+%     set(xlabh,'Position',get(xlabh,'Position') - [0 -0.007 0]);
+% 
+%     ylabh = get(gca,'YLabel');
+%     set(ylabh,'Position',get(ylabh,'Position') - [-0.9 0 0]);
 
      name = strcat('+tvt_activity/doc/Img/eps/', fileName, '.eps');
      export_fig(name);

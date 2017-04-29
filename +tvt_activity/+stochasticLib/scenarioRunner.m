@@ -45,19 +45,20 @@ catch
 end
 
 % Comms. Pars.
+freqSim        = 2.8e10;
+alpha_los      = 2.8;
 try
-    tmp = alpha_los;
+    tmp = alpha_nlos;
 catch
-    alpha_los      = 2.8;
     alpha_nlos     = 3.86;
 end
-C_los          = 1;
-C_nlos         = 1;
+C_los          = 1; % This value is NOT equal to 1! Please, refer to the definition of thermal_Noise
+C_nlos         = 1; % This value is NOT equal to 1! Please, refer to the definition of thermal_Noise
 Pt                 = 0.5;
 BW                 = 100e6; % 100MHz
 mNakagami 		   = 3;
 thermal_Noise_dbm  = 10 * log10( 1.381 * 1e-23 * 290 * BW * 1e3 );
-thermal_Noise      = tvt_activity.utils.db2Lin(thermal_Noise_dbm - 30); % in W
+thermal_Noise      = tvt_activity.utils.db2Lin(thermal_Noise_dbm - 30) / tvt_activity.utils.getFSPL(freqSim);
 SINR_Max           = tvt_activity.utils.db2Lin(100);
 
 % Investigated Pars.
