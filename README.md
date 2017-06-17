@@ -5,6 +5,7 @@ For further details, please refer to https://arxiv.org/abs/1706.00298
 License
 -------
 Should this code be used within the development of a manuscript, the authors are required to cite the following paper:
+```
     @ARTICLE{2017arXiv170600298T,
         author = {{Tassi}, A. and {Egan}, M. and {Piechocki}, R.~J. and {Nix}, A.},
         title = "{Modeling and Design of Millimeter-Wave Networks for Highway Vehicular Communication}",
@@ -17,12 +18,13 @@ Should this code be used within the development of a manuscript, the authors are
         month = jun,
         adsurl = {http://adsabs.harvard.edu/abs/2017arXiv170600298T},
     }
+```
 
 Please note that the code contained in
-    - ./src/export_fig
-    - ./src/+tvt_activity/+utils/plotsparsemarkers.m
-    - ./src/+tvt_activity/+utils/+hyp2f1mex
-    - ./src/+tvt_activity/plotTickLatex2D.m
+    * ./src/export_fig
+    * ./src/+tvt_activity/+utils/plotsparsemarkers.m
+    * ./src/+tvt_activity/+utils/+hyp2f1mex
+    * ./src/+tvt_activity/plotTickLatex2D.m
 have been developed by third parties. These pieces of software can be downloaded from MATLAB Central File Exchange (https://uk.mathworks.com/matlabcentral/fileexchange/), for free.
 
 
