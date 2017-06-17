@@ -4,6 +4,20 @@ For further details, please refer to https://arxiv.org/abs/1706.00298
 
 License
 -------
+Should this code be used within the development of a manuscript, the authors are required to cite the following paper:
+    @ARTICLE{2017arXiv170600298T,
+        author = {{Tassi}, A. and {Egan}, M. and {Piechocki}, R.~J. and {Nix}, A.},
+        title = "{Modeling and Design of Millimeter-Wave Networks for Highway Vehicular Communication}",
+        journal = {ArXiv e-prints},
+        archivePrefix = "arXiv",
+        eprint = {1706.00298},
+        primaryClass = "cs.IT",
+        keywords = {Computer Science - Information Theory, Computer Science - Performance},
+        year = 2017,
+        month = jun,
+        adsurl = {http://adsabs.harvard.edu/abs/2017arXiv170600298T},
+    }
+
 Please note that the code contained in
     - ./src/export_fig
     - ./src/+tvt_activity/+utils/plotsparsemarkers.m
