@@ -4,7 +4,7 @@ For further details, please refer to https://arxiv.org/abs/1706.00298
 
 License
 -------
-Should this code be used within the development of a manuscript, the authors are required to cite the following paper:
+Should this code be used for drafting a manuscript, the authors are required to cite the following paper:
 ```
     @ARTICLE{2017arXiv170600298T,
         author = {{Tassi}, A. and {Egan}, M. and {Piechocki}, R.~J. and {Nix}, A.},
