@@ -21,10 +21,10 @@ Should this code be used within the development of a manuscript, the authors are
 ```
 
 Please note that the code contained in
-    * ./src/export_fig
-    * ./src/+tvt_activity/+utils/plotsparsemarkers.m
-    * ./src/+tvt_activity/+utils/+hyp2f1mex
-    * ./src/+tvt_activity/plotTickLatex2D.m
+* ./src/export_fig
+* ./src/+tvt_activity/+utils/plotsparsemarkers.m
+* ./src/+tvt_activity/+utils/+hyp2f1mex
+* ./src/+tvt_activity/plotTickLatex2D.m
 have been developed by third parties. These pieces of software can be downloaded from MATLAB Central File Exchange (https://uk.mathworks.com/matlabcentral/fileexchange/), for free.
 
 
