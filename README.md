@@ -20,12 +20,11 @@ Should this code be used within the development of a manuscript, the authors are
     }
 ```
 
-Please note that the code contained in
+Please note that the code contained in the following locations have been developed by third parties. These pieces of software can be downloaded from MATLAB Central File Exchange (https://uk.mathworks.com/matlabcentral/fileexchange/), for free:
 * ./src/export_fig
 * ./src/+tvt_activity/+utils/plotsparsemarkers.m
 * ./src/+tvt_activity/+utils/+hyp2f1mex
 * ./src/+tvt_activity/plotTickLatex2D.m
-have been developed by third parties. These pieces of software can be downloaded from MATLAB Central File Exchange (https://uk.mathworks.com/matlabcentral/fileexchange/), for free.
 
 
 Requirements
@@ -33,7 +32,7 @@ Requirements
 The code is compatible with Linux (Ubuntu 14.04 LTS) and OS X 10.11.6. The figure generation process is only compatible with OS X 10.11.6.
 
 Furthermore, the code requires what follows:
-    - MATLAB R2015a (including the Parallel Computing Toolbox) with the capability of building MEX files by means of g++. Please be aware that our MEX files are compiled by using the g++ compiler flag --std=c++11.
+* MATLAB R2015a (including the Parallel Computing Toolbox) with the capability of building MEX files by means of g++. Please be aware that our MEX files are compiled by using the g++ compiler flag --std=c++11.
 
 
 To Replicate the results and the figures reported in the manuscript:
