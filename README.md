@@ -9,13 +9,9 @@ Should this code be used for drafting a manuscript, the authors are required to 
     @ARTICLE{2017arXiv170600298T,
         author = {{Tassi}, A. and {Egan}, M. and {Piechocki}, R.~J. and {Nix}, A.},
         title = "{Modeling and Design of Millimeter-Wave Networks for Highway Vehicular Communication}",
-        journal = {ArXiv e-prints},
-        archivePrefix = "arXiv",
-        eprint = {1706.00298},
-        primaryClass = "cs.IT",
-        keywords = {Computer Science - Information Theory, Computer Science - Performance},
+        journal={IEEE Transactions on Vehicular Technology}, 
         year = 2017,
-        month = jun,
+        month = jul,
         adsurl = {http://adsabs.harvard.edu/abs/2017arXiv170600298T},
     }
 ```
